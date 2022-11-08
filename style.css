@@ -10,11 +10,25 @@ body {
     width: 500px;
     border: 1px solid black;
     display: flex;
-    justify-content: center;
-    padding-top: 50px;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title {
     margin-bottom: 50px;
+}
+
+.information {
+    width: 450px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    gap: 20px;
+    background-color: red;
+}
+
+.information > div{
+    display: flex;
+    gap:20px;
 }

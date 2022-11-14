@@ -25,10 +25,24 @@ body {
     flex-direction: column;
     padding-top: 50px;
     gap: 20px;
-    background-color: red;
+    
 }
 
 .information > div{
     display: flex;
     gap:20px;
 }
+
+#submit {
+    height: 20px;
+    width: 100px;
+}
+
+input:valid {
+    border: 2px solid black;
+}
+
+input:invalid: {
+    border: 2px solid red;
+}
+

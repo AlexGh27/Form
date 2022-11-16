@@ -2,7 +2,8 @@ const form = document.querySelector("form");
 const email = document.querySelector("#user_email");
 const zip = document.querySelector("#user_zip");
 const password = document.querySelector("#user_password");
-const pass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+const pass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+const confirmation = document.querySelector("#user_confirm");
 
 email.addEventListener("input", (e) => {
     if (email.validity.typeMismatch) {
@@ -26,14 +27,22 @@ zip.addEventListener("input", (e) => {
 });
 
 password.addEventListener("input", (e) => {
-    if (password.validty.tooShort) {
-        password.setCustomValidity("Your password must have at least 8 characters");
+    if (!pass.test(password)) {
+        password.setCustomValidity("Your password must have 8-15 characters, at least one lowercase letter, one uppercase letter, one numeric digit and one special character.")
+        password.reportValidity();
     }
-    if (password.validty.tooLong) {
-        password.setCustomValidity("Your password must have up to 25 characters");
-    }
-    if (password.validity.patternMismatch) {
-        password.setCustomValidity("Your password must contain at least one lower capital letter, one upper capital letter and one number")
+    else {
+        password.setCustomValidity("");
         password.reportValidity();
     }
 });
+
+confirmation.addEventListener("input", (e) => {
+    if (!password == confirmation) {
+        confirmation.setCustomValidity("");
+    }
+    else {
+        confirmation.setCustomValidity("The passwords do not match!");
+        confirmation.reportValidity();
+    }
+})
